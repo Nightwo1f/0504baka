@@ -41,11 +41,14 @@ const lightboxImage = document.querySelector("#lightboxImage");
 const lightboxMessage = document.querySelector("#lightboxMessage");
 const closeLightbox = document.querySelector("#closeLightbox");
 const musicToggle = document.querySelector("#musicToggle");
-const backgroundMusic = document.querySelector("#backgroundMusic");
+const musicPlayer = document.querySelector("#musicPlayer");
 
 let lastFocusedElement = null;
+let isMusicPlaying = false;
+let pendingMusicPlay = false;
 
 function showEnvelope() {
+  pauseMusic();
   letterScreen.classList.remove("is-visible");
   envelopeScreen.classList.add("is-visible");
   openLetter.classList.remove("is-opening");
@@ -59,6 +62,7 @@ function showLetter() {
     envelopeScreen.classList.remove("is-visible");
     letterScreen.classList.add("is-visible");
     backToEnvelope.focus();
+    playMusic();
   }, 650);
 }
 
@@ -118,20 +122,54 @@ function hideLightbox() {
 }
 
 function toggleMusic() {
-  if (backgroundMusic.paused) {
-    backgroundMusic.play()
-      .then(() => {
-        musicToggle.textContent = "Pausar música";
-      })
-      .catch(() => {
-        musicToggle.textContent = "Música indisponível";
-      });
+  if (isMusicPlaying) {
+    pauseMusic();
     return;
   }
 
-  backgroundMusic.pause();
+  playMusic();
+}
+
+function sendMusicCommand(command) {
+  if (!musicPlayer.contentWindow) {
+    return;
+  }
+
+  musicPlayer.contentWindow.postMessage(
+    JSON.stringify({
+      event: "command",
+      func: command,
+      args: []
+    }),
+    "https://www.youtube.com"
+  );
+}
+
+function playMusic() {
+  sendMusicCommand("playVideo");
+  pendingMusicPlay = true;
+  isMusicPlaying = true;
+  musicToggle.textContent = "Pausar música";
+
+  window.setTimeout(() => {
+    if (isMusicPlaying) {
+      sendMusicCommand("playVideo");
+    }
+  }, 800);
+}
+
+function pauseMusic() {
+  sendMusicCommand("pauseVideo");
+  pendingMusicPlay = false;
+  isMusicPlaying = false;
   musicToggle.textContent = "Tocar música";
 }
+
+musicPlayer.addEventListener("load", () => {
+  if (pendingMusicPlay) {
+    playMusic();
+  }
+});
 
 lightboxImage.addEventListener("error", () => {
   lightboxImage.removeAttribute("src");

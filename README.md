@@ -30,12 +30,11 @@ A mensagem principal da carta fica no arquivo `index.html`, dentro do bloco:
 
 ## Música de fundo
 
-A música é opcional e fica desativada por padrão. Para usar:
+A música usa um player embutido do YouTube e começa quando a pessoa clica em `Abrir carta`.
 
-1. Adicione um arquivo chamado `musica.mp3` dentro da pasta `assets/`.
-2. Abra o site e clique no botão `Tocar música`.
+O botão `Pausar música` permite parar a música, e o mesmo botão muda para `Tocar música` para iniciar novamente.
 
-O navegador pode bloquear autoplay, por isso a música só começa quando a pessoa clica no botão.
+Para trocar a música, edite o `src` do iframe `musicPlayer` no arquivo `index.html` e troque também o parâmetro `playlist` pelo ID do novo vídeo.
 
 ## Como publicar no GitHub Pages
 

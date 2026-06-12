@@ -46,9 +46,13 @@
         <button class="soft-button music-button" id="musicToggle" type="button" aria-label="Tocar ou pausar música de fundo">Tocar música</button>
       </div>
 
-      <audio id="backgroundMusic" preload="none" loop>
-        <source src="assets/musica.mp3" type="audio/mpeg">
-      </audio>
+      <iframe
+        class="music-frame"
+        id="musicPlayer"
+        title="Música de fundo"
+        src="https://www.youtube.com/embed/dfwZ8dbxnjU?enablejsapi=1&playsinline=1&loop=1&playlist=dfwZ8dbxnjU"
+        allow="autoplay; encrypted-media"
+      ></iframe>
 
       <div class="letter-layout">
         <article class="letter-card">

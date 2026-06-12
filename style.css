@@ -239,6 +239,16 @@ h2 {
   z-index: 2;
 }
 
+.music-frame {
+  width: 200px;
+  height: 113px;
+  position: absolute;
+  left: -9999px;
+  border: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
 .soft-button {
   cursor: pointer;
   transition: transform 0.2s ease, background 0.2s ease;
