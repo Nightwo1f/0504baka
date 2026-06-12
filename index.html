@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Uma carta romântica digital de Chelton Silva para Bianca Borges.">
+  <title>Carta para Bianca Borges</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="site-shell">
+    <section class="screen envelope-screen is-visible" id="envelopeScreen" aria-label="Envelope da carta">
+      <div class="ambient" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <div class="intro-copy">
+        <p class="date">04 de maio</p>
+        <h1>Bianca Borges</h1>
+        <p>Uma carta guardada com carinho por Chelton Silva.</p>
+      </div>
+
+      <button class="envelope-button" id="openLetter" type="button" aria-label="Abrir carta romântica">
+        <span class="envelope" aria-hidden="true">
+          <span class="envelope-flap"></span>
+          <span class="envelope-paper">
+            <strong>Bianca Borges</strong>
+            <small>Chelton Silva</small>
+          </span>
+          <span class="envelope-front"></span>
+        </span>
+        <span class="button-label">Abrir carta</span>
+      </button>
+    </section>
+
+    <section class="screen letter-screen" id="letterScreen" aria-label="Carta aberta">
+      <div class="letter-actions">
+        <button class="soft-button" id="backToEnvelope" type="button" aria-label="Voltar para o envelope">Voltar para o envelope</button>
+        <button class="soft-button music-button" id="musicToggle" type="button" aria-label="Tocar ou pausar música de fundo">Tocar música</button>
+      </div>
+
+      <audio id="backgroundMusic" preload="none" loop>
+        <source src="assets/musica.mp3" type="audio/mpeg">
+      </audio>
+
+      <div class="letter-layout">
+        <article class="letter-card">
+          <p class="date">04 de maio</p>
+          <h2>Para Bianca</h2>
+          <p class="typed-text">
+            Bianca, se esta carta pudesse guardar tudo o que eu sinto, ela teria o brilho dos nossos melhores dias,
+            a calma do teu abraço e a certeza bonita de que amar você é uma das partes mais especiais da minha vida.
+          </p>
+          <p>
+            Que cada foto aqui seja uma lembrança pequena, mas cheia de verdade: dos sorrisos que ficaram,
+            dos momentos que ainda vamos viver e do carinho que eu escolho te entregar todos os dias.
+          </p>
+          <p class="signature">Com carinho,<br>Chelton</p>
+        </article>
+
+        <div class="photo-gallery" id="photoGallery" aria-label="Galeria de fotos românticas"></div>
+      </div>
+    </section>
+  </main>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightboxMessage" aria-hidden="true">
+    <button class="lightbox-close" id="closeLightbox" type="button" aria-label="Fechar foto em tela cheia">×</button>
+    <figure class="lightbox-content">
+      <img id="lightboxImage" src="" alt="">
+      <figcaption id="lightboxMessage"></figcaption>
+    </figure>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
